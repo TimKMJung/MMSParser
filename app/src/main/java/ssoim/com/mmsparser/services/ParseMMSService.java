@@ -1,16 +1,22 @@
 package ssoim.com.mmsparser.services;
 
 import android.app.IntentService;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 
 import java.text.MessageFormat;
 
+import ssoim.com.mmsparser.R;
 import ssoim.com.mmsparser.data.Constants;
 import ssoim.com.mmsparser.data.Msg;
+import ssoim.com.mmsparser.views.ParserActivity;
 
 
 /**
@@ -98,6 +104,27 @@ private String ParseMMS(Msg msg) {
 //			subStr = msg.getBody().substring(startIndex, endIndex);
 			
 			subStr = msg.getBody().toString();
+
+
+			// * Notification Declarataion */
+			Intent intent = new Intent(this, ParserActivity.class);
+			int requestCode = 0;
+
+			String title = Constants.NOTIFICATION_TITLE;
+			String desc = Constants.NOTIFICATION_DESC;
+
+			PendingIntent pendingIntent = PendingIntent.getActivity(this, requestCode, intent, PendingIntent.FLAG_ONE_SHOT);
+//			Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+			NotificationCompat.Builder noBuilder = new NotificationCompat.Builder(this)
+					.setSmallIcon(R.mipmap.push_icon)
+					.setContentTitle(title)
+					.setContentText(desc)
+					.setAutoCancel(true)
+					.setContentIntent(pendingIntent);
+
+			NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			notificationManager.notify(0, noBuilder.build());
 
 			return subStr;
 		}
