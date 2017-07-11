@@ -9,6 +9,6 @@ public class Constants {
     public static  String TAG = "Code Artist";
     public static String ADDRESS_NUM = "*YOUR SPECIFIC ADDRESS NUMBER*";
 
-    public static String NOTIFICATION_TITLE = "Parsing Done";
-    public static String NOTIFICATION_DESC = "Parsing is completed.";
+    public static String NOTIFICATION_TITLE = "MMS Parsing Done";
+    public static String NOTIFICATION_DESC = "MMS Parsing is completed.";
 }
