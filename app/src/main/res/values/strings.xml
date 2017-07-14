@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MMS Parser by Code Artist</string>
+    <string name="app_name">SSOIM MMS Parser</string>
     <string name="parse_btn_title">Parsing MMS</string>
     <string name="parse_add_title">Parsing MMS Content</string>
 </resources>
